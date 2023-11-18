@@ -1,5 +1,19 @@
 git command
 
+git config --global user.email "belgecemjrad2018@gmail.com"
+git config --global user.name "boubaker"
+git status                 #get status
+git add <filename>         #add files to stage area
+git restore --staged .     #unstage files
+git commit -m "this is the first commit this copy is running on server ubuntu"                  #add to local repository
+git branch                 #get branches (main)
+git remote -v              #get remote repository (origin)
+git pull origin main      
+ssh-keygen -t rsa -b 4096 -C "belgecemjrad2018@gmail.com"           #create key
+cat /home/ctim/.ssh/id_rsa.pub                                      #read file and copy key to past in github
+
+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
+git clone https://ctim2024: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@github.com/ctim2024/analyse-bk.git
 
 
 git ls-files -s          # list of changes in staging area
