@@ -48,3 +48,5 @@ git status          # to show status after git fetch
 git merge           # to merge remote branch or remote repo to local branch or repo this is execute after git fetch
 alias graph="git log --oneline --all --graph --decorate"     # this is alias to use graph instead this long command
 git push -u origin feature   # this command will create branch feature in remote repo and then push commits from local branch feature to remote branch feature
+git pull origin       # git pull = git fetch + get merge
+git branch -vv        # correspond branches between local and remote
