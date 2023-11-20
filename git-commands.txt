@@ -35,3 +35,10 @@ git merge testing          #be on the master branch and execute this command to 
 git branch --merged        #show meged branches
 git branch -d testing      #delete branch
 
+
+
+# remote repository commands
+
+git remote          # get remote repo names  (origin = remote repository)
+git remote -v       # get action can do on remote repo like push fetch
+
