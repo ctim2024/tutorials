@@ -19,7 +19,7 @@ git clone https://ctim2024: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@github.com/c
 git ls-files -s          # list of changes in staging area
 git status -s
 git cat-file -p 1585
-git log
+git log                 # show commits 
 git diff           #diff working dir and stage
 git diff --staged   #diff between stage and repo
 git config --global core.editor "vim"    #editor by default
@@ -41,4 +41,9 @@ git branch -d testing      #delete branch
 
 git remote          # get remote repo names  (origin = remote repository)
 git remote -v       # get action can do on remote repo like push fetch
-
+git status          # show diff between remote and local
+git branch -r       # show branches in remote repo
+git fetch origin    # show new commits added to remote repo to show diff with local  after this command execute command "git status" to show status of your local repo accross remote
+git status          # to show status after git fetch
+git merge           # to merge remote branch or remote repo to local branch or repo 
+alias graph="git log --oneline --all --graph --decorate"     # this is alias to use graph instead this long command
