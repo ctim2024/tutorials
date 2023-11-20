@@ -45,5 +45,6 @@ git status          # show diff between remote and local
 git branch -r       # show branches in remote repo
 git fetch origin    # show new commits added to remote repo to show diff with local  after this command execute command "git status" to show status of your local repo accross remote
 git status          # to show status after git fetch
-git merge           # to merge remote branch or remote repo to local branch or repo 
+git merge           # to merge remote branch or remote repo to local branch or repo this is execute after git fetch
 alias graph="git log --oneline --all --graph --decorate"     # this is alias to use graph instead this long command
+git push -u origin feature   # this command will create branch feature in remote repo and then push commits from local branch feature to remote branch feature
