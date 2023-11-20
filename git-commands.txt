@@ -50,3 +50,4 @@ alias graph="git log --oneline --all --graph --decorate"     # this is alias to 
 git push -u origin feature   # this command will create branch feature in remote repo and then push commits from local branch feature to remote branch feature
 git pull origin       # git pull = git fetch + get merge
 git branch -vv        # correspond branches between local and remote
+git log -10           # 10 commits only
