@@ -57,3 +57,10 @@ git push -u origin feature   # this command will create branch feature in remote
 git pull origin       # git pull = git fetch + get merge
 git branch -vv        # correspond branches between local and remote
 git log -10           # 10 commits only
+
+
+
+
+
+
+88888888888888888888888888888888888888888888888888
