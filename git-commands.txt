@@ -29,12 +29,18 @@ git reset --hard HEAD~1    #roll back to before last commit and change working d
 git reflog                 #show all commits include deleted commits
 git reset --HEAD@{1}       #go to this commit 
 git show HEAD
+
+#branch
+
 git branch testing         #new branch create
 git switch testing         #change branch and all next commits will be in this branch
 git merge testing          #be on the master branch and execute this command to merge testing branch on master
 git branch --merged        #show meged branches
-git branch -d testing      #delete branch
-
+git branch -d testing      #delete branch (safe delete) if branch not merged it will not be deleted
+git branch -D testing      #force deleting
+git checkout testing       #switch branch
+git checkout -d testing    #create branch and switch to this branch
+git branch -m testingren   #rename branch
 
 
 # remote repository commands
