@@ -12,8 +12,6 @@ git pull origin main
 ssh-keygen -t rsa -b 4096 -C "belgecemjrad2018@gmail.com"           #create key
 cat /home/ctim/.ssh/id_rsa.pub                                      #read file and copy key to past in github
 
-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
-git clone https://ctim2024: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@github.com/ctim2024/analyse-bk.git
 
 
 git ls-files -s          # list of changes in staging area
