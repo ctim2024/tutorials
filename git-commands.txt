@@ -1,5 +1,6 @@
 git command
 
+git commit --amend          # modify the last commit message
 git config --global user.email "belgecemjrad2018@gmail.com"
 git config --global user.name "boubaker"
 git status                 #get status
