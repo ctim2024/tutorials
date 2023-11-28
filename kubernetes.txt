@@ -1,0 +1,121 @@
+#node
+kubectl get nodes                                                          #get all nodes in cluster
+kubectl label node minikube disk=ssd                                       #add label to node minikube
+kubectl label node minikube disk=hdd --overwrite                           #override label in node
+
+#endPoints
+kubectl get endpoints analyse-frontend-service
+
+
+#igness
+kubectl get ingresses
+k logs nginx-ingress-microk8s-controller-kgwtf -n ingress --since 10s
+
+#pods
+kubectl create -f kubia-manual.yaml                                         #create pod from yaml file
+kubectl get pod kubia-zxzij -o yaml                                         #get yaml file of created pod
+kubectl get pod kubia-zxzij -o json                                         #get pod json 
+kubectl logs kubia-manual                                                   #show logs of pod that contain only one container 
+kubectl logs kubia-manual -c cont_name                                      #show logs of container if pod contain than one container 
+kubectl port-forward kubia-manual 8888:8080                                 #The port forwarder is running and you can now connect to your pod through the local port. 
+kubectl delete pod --all                                                    #delete all pods under default namespace
+kubectl delete po -l app=analyse                                            #delete all pods related to label app=analyse
+kubectl delete ns custom-namespace                                          #delete all pods under namespace by deleting this namespace
+kubectl get pod --show-labels           				    #show labels of pod
+kubectl get pods
+kubectl get pods -o wide                                                    #get more details
+kubectl describe pod
+
+
+#labels
+kubectl get po -L creation_method,env                                       #show specific labels 
+kubectl label po kubia-manual creation_method=manual                        #add label creation_method for existing pod kubia-manual
+kubectl label po kubia-manual-v2 app=analyse2 --overwrite                   #modify existing label
+kubectl get po -l owner=boubakerjrad                                        #select pods with label owner=boubakerjrad
+kubectl get po -l env                                                       #list all pods that include the env label, whatever its value is
+kubectl get po -l '!env'                                                   
+kubectl label node gke-kubia-85f6-node-0rrx gpu=true                        #add label gpu=true to node
+kubectl get nodes -l gpu=true  
+
+#annotation
+kubectl annotate pod kubia-manual mycompany.com/someannotation="foo bar"    #add annotation to pod 
+
+#namespaces
+kubectl get ns                                                              #get all namespaces in kubernetes cluster
+kubectl get po --namespace kube-system                                      #get pods related to namespace kube-system
+kubectl create -f custom-namespace.yaml                                     #create namespace from yaml file
+kubectl create namespace custom-namespace                                   #create namespace throught command
+kubectl delete ns custom-namespace                                          #delete namespace and its pods
+
+#replicationcontroller
+k apply -f analyse-front-manual.yml                                         #create new replicaController
+kubectl get rc                                                              #get info about replication Controller
+kubectl describe rc kubia
+kubectl edit rc kubia                                                       #edit yaml file of replication controller Kubia.we can change rc from this file for example replicas will be 10 instead 3 when i save the file rc create 10 replicas
+kubectl scale rc kubia --replicas=10                                        #modify number of replicas in rc
+kubectl delete rc kubia --cascade=false                                     #delete rc without deleting pods  that is what mean --cascade=false we can then create new rc and with label assign previous pods to it
+
+#replicaSet
+kubectl get rs
+kubectl describe rs
+kubectl delete rs kubia
+
+#daemonSet
+kubectl create -f ssd-monitor-daemonset.yaml
+kubectl get ds
+
+
+#job
+kubectl get jobs
+kubectl logs batch-job-28qf4
+
+#configMap
+kubectl create configmap myconfigmap --from-literal=foo=bar --from-literal=bar=baz --from-literal=one=two
+kubectl create configmap my-config --from-file=customkey=config-file.conf                                         #This command will store the file’s contents under the key customkey
+kubectl create configmap my-config --from-file=/path/to/dir                                                       #In this case, kubectl will create an individual map entry for each file in the specified directory   
+kubectl create configmap fortune-config --from-file=
+
+
+
+#Secret
+kubectl create secret generic mysecret --from-literal=foo=bar --from-literal=bar=baz
+kubectl create secret generic test-secret --from-literal='username=my-app' --from-literal='password=39528$vdg7Jb'
+
+
+
+#deployment
+kubectl create -f kubia-deployment-v1.yaml --record                      # create new deployement    --record to record in history 
+kubectl rollout status deployment kubia                                  # check deployment status
+kubectl patch deployment kubia -p '{"spec": {"minReadySeconds": 10}}'    # modify a property in yaml
+kubectl set image deployment kubia nodejs=luksa/kubia:v2                 # change the image to trigger the rolling update
+kubectl rollout undo deployment kubia                                    # undoing rollout return to the old version
+kubectl rollout history deployment kubia                                 # diplay revision history
+kubectl delete deployment --all
+
+
+
+
+
+kubectl delete service --all                                    
+kubectl delete all --all -n namespace                                     #delete all resources under namespace like pods services replicaControllers.. You should specify the name of the namespace otherwise will delete resources in default namespace 
+
+
+
+
+kublctl create deployment --image=nginx nginx-app
+
+kubectl explain pods                                                       # explain architacture of yaml file
+kubectl explain pod.spec                                                   # explain spec part architacture of yaml file
+
+
+
+
+
+minikube status
+minikube start
+sudo usermod -aG docker $USER && newgrp docker
+kubectl exec kubia-2r1qb -- touch /var/ready
+
+
+#port forwarding
+kubectl port-forward mysql-nfs-65758cdc9d-c5kqb 3306:3306 --address='0.0.0.0'  
