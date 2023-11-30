@@ -38,6 +38,9 @@ git branch -m testingren   #rename branch
 git branch -r              # show branches in remote repo
 git branch -v              # show all branches and the last commit in every branch
 git branch -vv             # correspond branches between local and remote
+git branch -v --all        #show last commit in local and in remote repo
+
+
 
 # remote repository commands
 
