@@ -1,0 +1,4 @@
+#maven commands list in vscode
+
+mvn clean install            # in the begining before start project
+mv spring-boot:run           # to run project

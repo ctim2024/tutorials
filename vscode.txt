@@ -1,0 +1,7 @@
+# steps to modify vscode theme
+
+ctrl+shift+p
+search : theme
+choose : color theme
+
+

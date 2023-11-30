@@ -23,10 +23,6 @@ git diff --staged   #diff between stage and repo
 git config --global core.editor "vim"    #editor by default
 git log --oneline file.txt
 git show <commit key> 
-git reset --hard HEAD~1    #roll back to before last commit and change working directory with this commit
-git reflog                 #show all commits include deleted commits
-git reset --HEAD@{1}       #go to this commit 
-git show HEAD
 
 #branch
 
@@ -39,7 +35,9 @@ git branch -D testing      #force deleting
 git checkout testing       #switch branch
 git checkout -d testing    #create branch and switch to this branch
 git branch -m testingren   #rename branch
-
+git branch -r              # show branches in remote repo
+git branch -v              # show all branches and the last commit in every branch
+git branch -vv             # correspond branches between local and remote
 
 # remote repository commands
 
@@ -55,10 +53,25 @@ git push -u origin feature   # this command will create branch feature in remote
 git pull origin       # git pull = git fetch + get merge
 git branch -vv        # correspond branches between local and remote
 git log -10           # 10 commits only
+git log --oneline --all    #display all commits in local or in remote
+
+#undoing
+git reset --hard HEAD~1    #rollback to before last commit and change working directory with this commit : here will modify directely all last commit changes from working tree
+git reset HEAD~1           #rollback and the last commit changes will be unstaged
+git restore .              #delete all unstaged modifications from working tree
+git reflog                 #show all commits include deleted commits
+git reset --HEAD@{1}       #go to this commit 
+git show HEAD
 
 
 
+#errors and how to solve
+git push origin
 
+fatal: The current branch test has no upstream branch.
+To push the current branch and set the remote as upstream, use
 
+    git push --set-upstream origin test
 
-88888888888888888888888888888888888888888888888888
+Fix : that's mean you try to push the branch in local named test to remote branch also named test but in remote you don't have this remote, for that it propose to create this branch in remote before pushing
+conclusion : git push pushes from master to master or from main to main or from test to test , you should have the same branch in remote repo.
