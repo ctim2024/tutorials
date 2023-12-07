@@ -1,0 +1,12 @@
+# command in terminal description
+   -> ls -a /home/belgecem      : ls : command   -a : option   /home/belgecem : arguments
+   
+   
+# navigate in directory 
+
+  -> pwd                           : displays the present working directory
+  -> cd ~ or cd                    : change to your home directory
+  -> cd ..                         : change to parent directory
+  -> cd -                          : change to previous directory
+  -> pushd /tmp                    : change to /tmp and push the directory in list of browsed directory
+  -> popd                          : remove last directory from list of browsed directory
