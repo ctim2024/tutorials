@@ -27,6 +27,7 @@ Mounting Parameters                 DriveLetter      MountPoint
 Base Folder (where OS is stored)    C:\              /
 
 # Partions in the Linux Hard Disk : 
+
    -> Linux Hard Disk : sda
    -> / : sda1
    -> home : sda2
@@ -49,7 +50,7 @@ Base Folder (where OS is stored)    C:\              /
    -> ls -a /home/belgecem      : ls : command   -a : option   /home/belgecem : arguments
    
    
-# navigate in directory 
+# directory 
 
   -> pwd                           : displays the present working directory
   -> cd ~ or cd                    : change to your home directory
@@ -57,3 +58,55 @@ Base Folder (where OS is stored)    C:\              /
   -> cd -                          : change to previous directory
   -> pushd /tmp                    : change to /tmp and push the directory in list of browsed directory
   -> popd                          : remove last directory from list of browsed directory
+  -> dirs                          : show list of browse directory
+  -> cd /                          : go to root
+  -> ls                            : list content of actual directory
+  -> ls -l                         : list files with details
+  -> ls -a                         : //         //         //       //  and all directories and hidden files 
+  -> ls -l *fil*                   : display list of files with name containes fil
+  -> tree                          : display a tree view of filesystem    
+  -> tree -d /                     : tree of directories in /  
+  -> mkdir dir1 dir2               : create new directory
+  -> rmdir dir*                    : delete empty directories begining with dir
+  -> rm -rf dir2                   : delete not empty directory
+
+
+# manage files 
+  
+  -> echo > file1.txt              : create empty file
+  -> touch file2                   : create empty file
+  -> wc file1.txt                  : display number of lines of file
+  -> cat                           : display the content of file
+  -> cat -n                        : //    //     //         // with line number 
+  -> less file1.txt                : navigate file by screen
+  -> less -N file1.txt             : //   //     //        // with line number
+  -> head file1.txt                : display first 10 lines of file
+  -> head -20 file1.txt            : display first 20 lines in the file
+  -> tail file1.txt                : display the last 10 lines
+  -> tail -20 file1.txt            : display last 20 lines
+  -> tac file 1.txt                : display the file backwards (reversed)
+  -> mv file1 file2                : rename file1 to file2
+  -> rm file2                      : remove file2   
+  -> rm -i file1                   : confirm before deleting
+  -> ls -lR dir*                   : list of files in subdirectories begining with dir
+
+# search files
+
+  -> find . -name "file1*" -ls     : find files beging by file1
+  -> locate file1                  : find all file in system or directory with file1 
+  -> sudo updatedb                 : this command to update list of files and directories : this list is iterate by locate command
+  # wild card
+    -> ?                           : matches any single charachter
+    -> *                           : matches any string of characters
+    -> [set]                       : matches any character in the set of characters, for example [adf] will match any occurrence of a, d or f
+    -> [!set]                      : matches any character not in the set of charachters 
+
+
+
+
+
+
+
+
+
+#  sudo apt-get install "vmware*"   : to install all packages related to vmware 
