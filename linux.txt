@@ -114,12 +114,83 @@ Base Folder (where OS is stored)    C:\              /
  softwares in linux managed as packages : package contains all software files and dependencies
  
   -> dpkg --list | less             : list all installed packages by screen
+  -> dpkg --list | grep apache      : list all packages and select apache name from list
+  -> dpkg --listfiles bzip2 | less  : list of all files in the package bzip2
+  -> sudo dpkg --remove bzip2       : remove package
+  -> sudo apt-cache search wget2    : search in apt repository if wget2 package exist to then install it
+  -> sudo apt-get install wget2-dev : install wget2
+  -> sudo apt-get remove wget2      : remove package wget2  
+  -> sudo apt-get install "vmware*"   : to install all packages related to vmware 
 
 
+# documentation
+
+  -> man ls                         : give me documentation of ls command
+  -> man -f ls                      : give short description like whatis ls
+  -> man 7 ls                       : give section 7 if exist 
+  -> man -a ls                      : give all documentation 
+  -> man -k ls                      : give all documentation contains ls
+  -> apropos ls                     : //      //     //     //     //  //
+  -> info ls                        : also give documentation if i want to search specific work i typ / then i put my word
+  -> ls --help                      : also gives fast help
 
 
+# processes 
 
+      Process Type                       Description                                                                                   Example  
+	  
+	  Interactive Processes              Need to be started by a user, either at a command line or through a GUI                       bash, firefox, top  
+      Batch Processes                    Automatic processes which are scheduled from and then disconnected from the terminal          updatedb, idconfig
+	  Daemons                            Server processes that run continuously                                                        httpd, sshd, libvirtd
+	  Threads                            Lightweight processes. These are tasks that run under the umbrella of a main process,         firefox, gnome-terminal-server  
+	                                     sharing memory and other resources.
+	  Kernel Threads                     Kernel tasks that users neither start nor terminate and have little control over              kthreadd, migration, ksoftirqd
+	  
+	  
+	= All running processes will be in a queue managed by kernel   
+    = PID   : process id
+    = PPID  : parent process id
+    = TID   : thread id if process has many threads otherwise thread will have pid id
+	
+	-> kill -SIGKILL <pid>              : kill a process or terminate
+	-> kill -9 <pid>                    : //     //    //    //    //
+    	
+    = a user can start many processes the system identify the user by the real user ID or the ruid assigned to the user 	  
+	= RUID  : identifies the user who started the process
+    = EUID  : determines the access rights of the user
+    = RGID  : identifies the group that started the process
+    = EGID  : determines the access rights of the group	
+  => usually we talk only about UID and GUI
+    
+    * Priority : 	
+    = the process can run limit number of tasks per time, for that we assign a priority to process called nice value or niceness 
+    = process with low niceness is executed before another with high niceness
+    = process with niceness = -20 is the highest priority and niceness = 19 is the lowest
 
+    -> ps                                : display processes launched underneath this particular terminal window (this command show : bash and ps)
+	-> ps -f                             : ps command with more details
+	-> ps -l                             : also more details like priority
+	-> ps lf                             : process with priority
+	-> ps -elf | less                    : display all process running on the system in full details
+	    = CMD betwen [] that's mean these program are running inside kernel not started by user
+	-> ps aux | head -10                 :  //        //          //        //       //             //
+	-> ps axo stat,priority,pid,pcpu,comm | head -10   : all process and only these properties
+	-> renice +5 3077                    : change priority to +5 for the pid 3077 
+	-> sudo renice -5 3077               : decrease priority
+	-> gnome-system-monitor              : to start task manager window if i want to manage process graphically
+    -> w or top or uptime                : show average load (average load are process that wait to be executed it can be wait the processor to be available or in sleep mode ) 
+	     -- load average: 0.69, 0.76, 0.94    : Load average of 0.69 over the last 1 minute
+                                                Load  average of 0.76 over the last 5 minutes
+                                                Load average of 0.94 over the last 15 minutes
+		= The load average is a measure of how many processes are waiting in the system's run queue to access the processor(s). In other words, it indicates the level of demand on the system.
 
+			If the load average is close to 0, it means the system is likely idle.
+			If the load average is close to the number of available processors (cores), it suggests that the system is fully utilized.
+			If the load average is significantly higher than the number of processors, it indicates that processes are waiting in the queue, and the system might be experiencing some level of congestion or overload.										
+															
+	
+	
+	-> treeps                             : display processes as tree
+	
 
-#  sudo apt-get install "vmware*"   : to install all packages related to vmware 
+#  which docker (/usr/bin/docker)   : where exist 
