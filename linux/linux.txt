@@ -191,6 +191,55 @@ Base Folder (where OS is stored)    C:\              /
 	
 	
 	-> treeps                             : display processes as tree
+	-> sleep $time                        : sleep for a moment in seconds by default or we add d for days
 	
+	
+# cron
+
+  = cron is a scheduling job 
+  
+    -> sudo cat /etc/crontab                : list all cron  
 
 #  which docker (/usr/bin/docker)   : where exist 
+
+
+
+# Filesystem
+
+    -> sudo mount /dev/sda5   /home                 : mount filesytem of partion sda5 to filesystem in directory /home     /home : mount point
+    -> sudo umount /home                            : unmount filesystem 	mounted in /home
+	-> mount | less -10                             : display mounted filesystems
+	-> df -hT                                       : // //    //      //      //
+	
+  = /home : is user directory	
+    /bin  : contain binary files and executable programs contains  user commands like ls man .... and necessary programs for boot
+	/sbin : likewise /bin it contains essential binaries related to system administation (administation commands like fssk , IP ..)
+	/usr  : user programs 
+	    /bin  : contains user programs
+		/sbin : contains system programs
+	/proc : process information this is a filesystem that contains virtuals directories and files that exists only in memory and presents informations about the system.
+	    /102    : this directory contains for example information about PID 102
+	/dev  : contains device nodes a type of pseudo file used by most hardware and software devices	except for network devices
+        /sda1   : first partition in the first hard disk
+        /lp1    : second printer
+        /random : a source of random numbers
+    /var  : containes files that are expected to change in size and content as system is running
+        /log   : system log files
+        /spool : print queues
+        /lib   : database files		
+		/tmp   : temporary files
+	/etc  : is the home for system configuration files it contains no binary programs although there some executable scripts. For user file configuration they are in their home directory 
+	/boot : contains few essential files needed to boot the system 
+	/lib  : contains libraries for essential programs almost of them is known as  dynamically loaded libraries, and known as shared libraries or shared objects
+	/lib64 : likewise /lib but contain 64 bit libraries  
+	/run   : an amovible disk like usb cdrom etc.. must be mounted to the filesystem to be used. By default the disk is detect automatically. In past the mount point was /media but now is /run
+	    example : /run/media/ctim/myusb  : this is the mount point of usb with name myusb and system user ctim
+	/mnt   : is used since early days of unix for temporarily mounting filesystem, these can be those on removable media but they might be network filesystems witch are not normally mounted or these can    
+             be temporary partitions or so-called loopback filesystem witch are files witch pretend to be partitions	
+	
+	
+	
+# Compare 
+
+     -> diff [option] file1.txt file2.txt                  : compare two files
+     -> 	 
