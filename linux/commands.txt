@@ -264,4 +264,82 @@ Base Folder (where OS is stored)    C:\              /
                  1- ~/.bash_profile
                  2- ~/.bash_login
                  3- ~/.profile				 
-				 shell will execute the first founded file if it found .bash_profile it will ignore bash_login and profile 
+				 = shell will execute the first founded file if it found .bash_profile it will ignore bash_login and profile 
+				 = one of this file is only executed in the startup of the system. when we start new terminal bashrc file will be executed.
+
+# aliases 
+
+     = most of aliases are placed in bashrc file	
+     -> alias                                              : display all aliases	
+
+# users and groups
+
+     = every user has a unique user id UID. normal user start with a uid of 1000 or greater.
+     = linux uses groups for organizing users . Group is collection of accounts that shared certain permissions.
+     = the control of group membership is administrated through /etc/group file witch contain a list of groups with their members.
+     = by default every user belongs to default or primary group. When a user logs in the group membership is set for their primary group 
+	   and all the members enjoy the same level of access and privilege permissions on various files and directories can be modified at the 
+	   group level.
+	 = users have one or more group ID GID  including a default one witch is the same as the UID. Thes numbers are associated with names 
+       through the files /etc/passwd	and /etc/group 
+	 = groups are used to establish a set of users who have common interests for the purpose of x success rights privileges and security considerations.
+     = access rights to files and devices are granted on the basis of the user and the group they belong to.	 
+	 = only root user can remove user or group  
+	 
+	 = manage user
+	 
+	 -> sudo useradd boubaker                                       	 : add new user , this will create a home directory for this user and add aline in /etc/passwd like this : boubaker:x:1001:1001::/home/boubaker:/bin/sh
+     -> sudo userdel boubaker                                            : delete a user however will leave home directory intact.
+	 -> sudo userdel -r boubaker                                         : delete user account and its home directory
+	 -> id                                                               : display information about the current user
+	 -> id 1001                                                          : //   //      //        //  UID 1001
+	 -> less /etc/default/useradd                                        : contains default for useradd like shell SHELL=/bin/sh  by default when we add new user its shell will be /bin/sh
+
+	 -> sudo useradd -m -c "belgecem belkeri" -s /bin/bash bekeri        : add new user -m to ensure the creation of home directory   bekeri : the name of account 
+	 -> sudo passwd bekeri                                               : add password to user bekeri
+	 -> grep bekeri /etc/passwd /etc/group                               : to verify entry is added in /etc/passwd also in /etc/group
+     -> ssh bekeri@localhost                                             : connect to new account through ssh
+	 -> ls -la  /etc/skel                                                : list of files that will be added to every new user by default
+	 
+	 = manage group
+	 
+	 -> sudo /usr/sbin/groupadd   anewgroup                              : creating a new group
+	 -> sudo /usr/sbin/groupdel   anewgroup                              : delete a group
+	 -> groups ctim                                                      : list of groups belongs to ctim user
+	 -> sudo /usr/sbin/usermod -a -G anewgroup ctim                      : add user ctim to group anewgroup   -a : append 
+	 -> sudo usermod -G $(id -nG ctim | sed 's/anewgroup//g' | xargs) ctim      : remove user 'ctim' from group 'anewgroup'
+	 = usermod can be used to modify group id or group name
+	 
+# environement variables 
+
+     -> env | less -10                                                   : list of environement variables
+     -> export                                                           : //   ///                //
+	 -> export PATH=$HOME/bin:$PATH                                      : add entry to PATH
+ 	 -> OLDPS1=$PS1                                                      : assign $PS1 env var to new env var OLDPS1
+     -> echo $PS1                                                        : PS1 is env var that contains the looks like of your prompt shell
+     	= thes special charachters can be included in PS1
+		\u : User name
+        \h : Host name
+        \w : current working directory
+        \! : History number of this command
+        \d : Date	
+
+# previous commands
+     -> history | tail -20	                                       : list of 20 last typed commands	
+	 
+	 = $HISTFILE      : the location of history file this file contains the historic of commands typed
+     = $HISTFILESIZE  : the size of HISTFILE by default 500
+	 = $HISTCONTROL   : how commands are stored
+	 = $HISTIGNORE    : which command lines can be unsaved
+	 
+	 -> set | grep HIST                                             : get list of HIST variables
+
+# file permissions
+   
+     -> ls -l somefile             : display permissions file   
+     -> chmod uo+x,g-w somefile    : add execute to uo (user or owner and others or world) and remove write from group (g)
+	 -> chmod 755 somefile         : change permission of file like this = rwxr-xr-x
+	 -> sudo chown root file1      : change file's owner to root
+	 -> chgrp root file3           : change file's group to root     : > -rw-rw-r-- 1 ctim root  0 Dec  8 09:42 file3
+
+	       
