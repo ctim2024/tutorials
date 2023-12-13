@@ -1,5 +1,5 @@
 #node
-kubectl get nodes                                                          #get all nodes in cluster
+kubectl get nodes   -o yaml                                                #get all nodes in cluster
 kubectl label node minikube disk=ssd                                       #add label to node minikube
 kubectl label node minikube disk=hdd --overwrite                           #override label in node
 
