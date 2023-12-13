@@ -242,4 +242,26 @@ Base Folder (where OS is stored)    C:\              /
 # Compare 
 
      -> diff [option] file1.txt file2.txt                  : compare two files
-     -> 	 
+     -> diff3 file1.txt  common_file.txt file2.txt         : compare three files accross the common file
+     -> file *                                             : show the type of files in a directory
+            remarq : linux don't recognize the type of file by its extension like windows but by its content.
+	 -> rsync sourcefile  destinationfile                  : copy source to destination (rsync can be used to copy from local to remote server)
+     -> rsync --progress -avrxH --delete sourcedir destdir : copy all sourcedir to destdir and display progress and few details about copy	 
+			
+			
+			
+# text editors
+
+     -> vimtutor	                                       : get help of vi	
+
+# user environement
+
+
+     -> whoami                                             : get the current user
+     -> who                                                : get current log on users	 
+	 
+	 = in startup these profile files or settings to customize user environement like login.com in vms are readed in order :
+                 1- ~/.bash_profile
+                 2- ~/.bash_login
+                 3- ~/.profile				 
+				 shell will execute the first founded file if it found .bash_profile it will ignore bash_login and profile 
