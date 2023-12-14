@@ -342,4 +342,74 @@ Base Folder (where OS is stored)    C:\              /
 	 -> sudo chown root file1      : change file's owner to root
 	 -> chgrp root file3           : change file's group to root     : > -rw-rw-r-- 1 ctim root  0 Dec  8 09:42 file3
 
-	       
+
+
+# manipulating text
+
+	 -> cat filename                                                       : to view file content    
+     -> tac file1 file2 > newfile                                          : create file with content of file2 before content of file1
+     -> cat << EOF > file3                                                 : create new file file3 and write in it from prompt in the end we put EOF
+     -> less somefile                                                      : read big file by screen
+     -> cat somefile | less                                                : //     //     //      //     
+	 -> head -n 5 file1                                                    : read the first five lines
+	 -> head -5  file1                                                     : //    //    ///      //
+	 -> tail -n 5 file1                                                    : read the last five lines
+	 -> tail -5 file1                                                      : //      //     //      //
+	 -> tail -f -5 file1.log                                               : continuously display lines
+	 
+	 = SED : Stream EDitor
+	 -> sed -e s/is/are/ file9                                             : replace the first occurence in all lines in file9
+	 -> sed -e s/is/are/g file9                                            : replace all occurence in all lines in file9
+	 -> sed -e 1,3s/is/are/g file9                                         : //   //      //    // from line 1 to line 3
+     -> sed -e 1,2s:is:are:g file9                                         : i can set : as seperator instead /
+     -> sed -e 1,2s:is:are:g file9 > outputfile                            : set the result in new file 
+	 -> sed 's/ /;/g' file3                                                : replace space between words with ';'
+
+	 = AWK : used to extract and print specific content of the file
+	 
+	 -> awk -F: '{ print $1 }' /etc/passwd                                 : print the first column in the file   -F: mean the seperator is ':' 
+     -> awk -F: '{ print $1 $7}' /etc/passwd                               : print the first and the seven column in the file   -F: mean the seperator is ':' 
+     -> awk  '{ print $0 }' /etc/passwd                                    : print all file   
+
+     = sort : sort file (look at the image)	 
+    
+	 = uniq : delete duplicate lines but the duplicate line must be one after other not faraway 
+	 
+     -> sort file1 file2 | uniq > file3                                    : delete duplicate lines (succesive lines for that we make sort before uniq)
+	 -> sort -u file1 file2 > file3                                        : //      //     //    //
+	 -> sort file3 | uniq -c                                               : to count number of duplicates
+	 
+	 
+	 = paste : we can use paste to paste columns from two files we take one column from file1 and paste with column 3 from file2
+	   -d : to specify the delimiter
+	   -s : to past in horizental not in vertical fashion
+	   
+	 -> paste -d ';' file3 file4                                            : past the content of the two files with delimiter ';' between columns
+	 
+	 
+	 = join : is like join in sql we have a common column between two files if i paste the two files i will have one column that be repeated but with join this column will be puted only one time
+	          join searche the common field between the two files and make join accross this field
+			  
+	 = split : is used to split a file into equal size segments for easier viewing and manipulation (show image)	
+
+     = regular expressions : used to matching a specific pattern
+	 = grep : is used as a primary text searching tool (look at image)
+	 = strings : is used to extract all printable charachter strings found in file or files
+	 -> strings book1.xls | grep my_string                       : select all strings from file book1.xls then filter by grep
+	 
+	 = TR : is used to translate specified charachters into other charachters or to delete them
+	 -> cat file1 | tr a-z A-Z                                   : replace lower case letters by upper case letters in file1
+	 
+	 = tee : take the output from any command and while sending to the standard output it also saves it in a file
+	 -> ls -l | tee out1                                         : save the result of ls in a file and the result will be displayed in the console
+	 -> ls -l > out2                                             : this command will send the output directly to the file without printing it in the console
+	 
+	 = wc : word count it counts the number of lines and words and charachters in a file or in list of files
+	 -> wc -l file1                                              : number of lines
+	 -> wc -c file1                                              : number of charachters
+     -> wc -w file1                                              : number of words
+
+     = cut : is used for manipulating column based files and is designed to extract specific columns, the default column seperator is the tab charachter	 
+	 
+	 
+	 
