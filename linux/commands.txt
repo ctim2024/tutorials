@@ -412,4 +412,44 @@ Base Folder (where OS is stored)    C:\              /
      = cut : is used for manipulating column based files and is designed to extract specific columns, the default column seperator is the tab charachter	 
 	 
 	 
+# Network Operations
+    
+	 = DNS
+     -> hostname                                                 : display the host name assigned to 127.0.0.1
+	 -> host ctim                                                : display assigned address to name ctim (this mapping exist in /etc/hosts)
+	 -> host google.fr                                           : display the address of google.fr
+	 -> nslookup google.fr                                       : //   //       //     //       // with more details
+	 -> dig google.fr                                            : //    //       //      //     //   //        //  //
+	 
+	 = network configuration files path : /etc/network
+	 
+	 -> ip -s link show                                          : display network interfaces 
+	 -> ifconfig                                                 : //    //     //   //     //
+	 -> ip address  show                                         : //   //      //    //    //
+     -> ip route show                                            : dipslay routing informations
+	 -> ip --brief addr show                                     : display all interfaces
+	 -> ping adress
+	 -> route -n                                                 : display routing table
+     -> route add -net address                                   : add static route
+     -> ip route add                                             : //      //     //
+     -> route del -net address                                   : delete static route
+     -> ip route del                                             : //     //     //   //	
+     -> ethtool ens33                                            : show interface and details
+     -> netstat -r	                                             : display routing table
+	 -> sudo nmap -sP 10.71.1.52
+	 -> wget                                                     : downoald files and large files
+	 -> curl -o saved.htmt https://google.fr                     : beside the download we want to obtain informations about url such as source code being used : in this example will downoald page and saved it in saved.html
+     -> ssh -l someone some_system                               : to connect as ssh to remote system or local another user
+	 -> ssh someone@some_system                                  : // ///             //             //              //
+	 -> scp -r /home/student   172.1.50.52/tmp    (look at image): copy files between to hosts in the network securely it uses ssh protocol to transfer data
+	 -> ssh ctim@10.71.1.52                                      : ctim = user on remote machine  10.71.1.52 : address of remote machine  
+
+
+
+    
+
+    	 
+	 
+	 
+	 
 	 
