@@ -422,7 +422,7 @@ Base Folder (where OS is stored)    C:\              /
 	 -> dig google.fr                                            : //    //       //      //     //   //        //  //
 	 
 	 = network configuration files path : /etc/network
-	 
+	 -> sudo lsof -i:80                                          : display running service in port 80
 	 -> ip -s link show                                          : display network interfaces 
 	 -> ifconfig                                                 : //    //     //   //     //
 	 -> ip address  show                                         : //   //      //    //    //
@@ -441,8 +441,11 @@ Base Folder (where OS is stored)    C:\              /
 	 -> curl -o saved.htmt https://google.fr                     : beside the download we want to obtain informations about url such as source code being used : in this example will downoald page and saved it in saved.html
      -> ssh -l someone some_system                               : to connect as ssh to remote system or local another user
 	 -> ssh someone@some_system                                  : // ///             //             //              //
-	 -> scp -r /home/student   172.1.50.52/tmp    (look at image): copy files between to hosts in the network securely it uses ssh protocol to transfer data
+	 -> scp -r /home/student   172.1.50.52:/tmp    (look at image): copy files between to hosts in the network securely it uses ssh protocol to transfer data
 	 -> ssh ctim@10.71.1.52                                      : ctim = user on remote machine  10.71.1.52 : address of remote machine  
+
+
+     -> curl -4 icanhazip.com                                    : give the public address ip
 
 
 

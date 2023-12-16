@@ -1,0 +1,40 @@
+# linux startup
+
+BIOS ----> BOOT LOADER (GRUB) -----> Initial RAM Disk 
+
+BIOS : Basic Input/Output System , it’s the first piece of software that is run
+when a computer is powered on.The BIOS is operating system
+independent. Its primary purpose is to test the underlying hardware
+components and to load a boot loader or operating system.The BIOS performs a POST, which stands for Power-On Self Test. The
+POST performs some basic checks of various hardware components such as
+the CPU, memory, and storage devices. Only if the POST succeeds will the
+BIOS attempt to load the boot loader.
+
+
+BOOT LOADER : Once a bootable device has been found, the BIOS will run the boot loader.
+Typically the GRUB boot loader will be used,You
+will typically see a message or series of messages from the boot loader
+which will allow you to interrupt the boot process and interact with the boot
+loader. If there are multiple operating systems installed, you can tell the
+boot loader which operating system to run.
+
+Initial RAM Disk : The initial RAM disk, abbreviated as “initrd,” is a temporary file system
+that’s loaded into memory when the system boots. This file system can
+contain helpers that perform hardware detection and load the necessary
+modules, sometimes called drivers, to get the actual file system mounted.
+For example, if the root file filesystem is stored on an LVM (Logical
+Volume Manager) volume, the initrd image will contain the kernel modules
+required to mount that logical volume as the root file system. Once the
+initrd mounts the actual root file system its job is done and the operating
+system continues loading from the real root file system..
+
+
+The Linux kernel, the initial RAM disk, and other files needed to boot the
+operating system are stored in /boot.
+
+
+The Kernel Ring Buffer : The kernel ring buffer contains messages related to the Linux kernel.
+
+     -> dmesg                   : display list of kernel messages from statup of system
+	 -> cat /var/log/dmesg      : //               //                //              //
+    
