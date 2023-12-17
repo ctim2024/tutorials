@@ -5,11 +5,38 @@ power on -> BIOS -> MBR -> BOOT LOADER (GRUB) -> Kernel (Linux OS) -> Initial RA
 
 /sbin/init => /lib/systemd/systemd
 
+
+
 $ sudo systemctl start|stop|restart httpd.service
 
 Enabling or disabling a system service from starting up at system boot :
 
 $ sudo systemctl enable|disable httpd.service
+
+
+
+# system
+
+  -> cd /lib/systemd/system && ls -l runlevel*target            : show target runlevel
+  -> sudo systemctl set-default multi-user.target               : set default target
+  -> sudo rm '/etc/systemd/system/default.target'               : delete default target
+  -> systemctl isolate graphical.target                         : change runlevel
+  -> systemctl isolate reboot.target                            : //   //     //
+  -> reboot                                       
+  -> shutdown -r now                                            : reboot now
+  -> systemctl isolate poweroff.target                          : shutdown
+  -> poweroff                                                   : //    //
+  
+  # log system 
+     = /etc/rsyslog.conf                                        : The main configuration file for rsyslog
+     = $IncludeConfig /etc/rsyslog.d/*.conf                     : add this line in /etc/rsyslog.conf to get configuration from any directory in rsyslog.d
+     = mail.info              -/var/log/mail.info               : example of rules in rsyslog.conf (facilities.severity)
+       mail.warn             -/var/log/mail.warn
+       mail.err              /var/log/mail.err
+     = auth,authpriv.*       /var/log/auth.log                  : 
+       *.*;auth.none,authpriv.none      -/var/log/syslog        : writes all messages except ones originating from the auth and authpriv facilities to /var/log/syslog
+
+-
 
 
 # Filesystem supported by Linux :
