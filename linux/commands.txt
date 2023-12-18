@@ -36,9 +36,15 @@ $ sudo systemctl enable|disable httpd.service
      = auth,authpriv.*       /var/log/auth.log                  : 
        *.*;auth.none,authpriv.none      -/var/log/syslog        : writes all messages except ones originating from the auth and authpriv facilities to /var/log/syslog
 
--
-
-
+     -> logger -p mail.info -t mailtest "Testing 123."          : logger a message 
+     -> sudo tail -1 /var/log/mail.log                          : after logger a message we acceded the message in file mail.log	 
+     -> cat /etc/logrotate.d/rsyslog                            : display the rotate of all files related to rsyslog
+     -> cat /etc/logrotate.conf                                 : lograte file configuration 
+	 -> logrotate -fv /etc/logrotate.conf                       : execute this command if i change anything in logrotate.conf and i want to test, The -f option tells logrotate to force a rotation while the -v option enables
+                                                                  verbose logging.
+	 
+	 
+	 
 # Filesystem supported by Linux :
 
   -> Conventional disk filesystems : ext3, ext4, XFS, Btrfs, JFS, NTFS, vfat, etc..
