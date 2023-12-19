@@ -489,6 +489,9 @@ Base Folder (where OS is stored)    C:\              /
 
 
     
+# unzip
+
+    -> unrar x gmaoF0120.rar
 
     	 
 	 
