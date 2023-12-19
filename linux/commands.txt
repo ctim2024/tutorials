@@ -42,7 +42,13 @@ $ sudo systemctl enable|disable httpd.service
      -> cat /etc/logrotate.conf                                 : lograte file configuration 
 	 -> logrotate -fv /etc/logrotate.conf                       : execute this command if i change anything in logrotate.conf and i want to test, The -f option tells logrotate to force a rotation while the -v option enables
                                                                   verbose logging.
-	 
+   # disk management
+     -> fdisk -l                                                : list of partitions in your system
+     -> fdisk /dev/sdb                                          : this command to partition disk /dev/sdb
+        -> m                                                    : enter m to get help
+        -> n                                                    : ceate MBR disk
+        -> g                                                    : create GPT disk
+        -> w                                                    : to write changes in disk		
 	 
 	 
 # Filesystem supported by Linux :
