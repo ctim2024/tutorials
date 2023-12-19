@@ -49,15 +49,20 @@ $ sudo systemctl enable|disable httpd.service
         -> n                                                    : ceate MBR disk
         -> g                                                    : create GPT disk
         -> w                                                    : to write changes in disk		
-	 
+     -> mkfs -t ext4 /dev/sda1                                     : create filesystem on partition sda1
+     -> mkfs.ext4 /dev/sda1                                        : //        //          //       //     
+     -> mount /dev/sda1 /opt                                    : mount sda1 on dir /opt                                
+     -> mount                                                   : show what actually mounted
 	 
 # Filesystem supported by Linux :
 
-  -> Conventional disk filesystems : ext3, ext4, XFS, Btrfs, JFS, NTFS, vfat, etc..
-  -> Flash storage filesystems : ubifs, jffs2, yaffs, etc..
-  -> Database filesystems
-  -> Special purpose filesystems : procfs, sysfs, tmpfs, squashfs, debugfs, etc..
-
+  = Conventional disk filesystems : ext3, ext4, XFS, Btrfs, JFS, NTFS, vfat, etc..
+  = Flash storage filesystems : ubifs, jffs2, yaffs, etc..
+  = Database filesystems
+  = Special purpose filesystems : procfs, sysfs, tmpfs, squashfs, debugfs, etc..
+  -> mkfs -t ext4 /dev/sda1                                     : create filesystem on partition sda1
+  -> mkfs.ext4 /dev/sda1                                        : //        //          //       //                                     
+  
 # Compare Windows and Linux :
                                     Windows           Linux
 Partition                           Disk1            /dev/sda1
