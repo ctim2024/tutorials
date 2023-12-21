@@ -1,0 +1,35 @@
+# Actif : ensemble des employés qu'est ce qu'on a fait avec les passifs
+   # Actif immobilsé : il s'agit de tous ce qui est immoblisé dans l'entreprise : les batiments le material roulant .....les machines les outils de travail, bref tous ce que reste plusieurs annés dans l'entreprise, tous ces elements sert à fonctionner l'entreprise
+   # Actif circulant : circule dans l'entreprise à fin de générer des benifices , circule = apparait disparait dans l'année, example : matiere primaire, pieces de rechanges .......
+  # Au niveau de l'actif on ordre les comptes selon le critère de liquidité (de moins liquid en haut de bilan vers le plus liquide en bas de bilan)
+# Passif : ensemble des dettes
+   # Capital : c'est la ressource principale de l'entreprise, provient des associés, des fondateurs et des actionnaires, cette somme sert en premier lieu à mettre en place l'entreprise acheter terrains, batiment, materials
+   # Dettes à long terme (plus d'un an) : les dettes remboursable à long terme au déla d'une année, s'utilise dans l'actif immobilié....
+   # Dettes à court terme (moins d'un an) : remboursable dans l'année, s'utilse dans l'actif circulant comme achat de matiere premiere pieces ....
+   
+  # an niveau de passif on classe les comptes selon le critère d'exigibilité, de moins exigible vers le plus exigible 
+# creances : factures clients non payés
+# Bilan comptable
+
+# Résultat d'une entreprise : != bénéfice  car résulat peut etre positif ou négatif tandisque bénéfice est toujours positif
+           = resulat négatif = perte
+		   = resulat positif = bénéfice
+		   
+		   = Résultat = produits - charges
+		      = charges = des depenses
+			  = produits = chiffre d'affaire (ventes)
+			  = si produits > charges alors on parle d'un bénéfice
+			  = si produits < charges alors on parle de perte
+			  = pour maximiser le bénéfice il faut maximiser les produits et minimiser les charges
+			  = Résulat soit une augmenetation de ressources (passif) dans le cas de bénéfice
+			            soit une diminution de ressources dans le cas d'une perte
+						
+# charge = depenses : achat des marchandises, fraix d'éléctricte, gaz, eau, salaires des travailleurs......
+           = certains depenses ne sont pas considerés comme des charges comme par example : achat d'une machine, achat d'un batiment.. : ce type de depense est comptabilisé dans l'actif immobilisé
+           = sont considérés comme charge les depenses supportés pour réaliser le résulat de l'entreprise càd les charges ayant comme but de fabriquer le produit, de faire des ventes et à faire dégager des bénéfices
+           = les autres dépenses sont classés sous la catégoris Actif immoblisé	
+
+
+        = achats (depenses) = 1- actif immobilisé 
+                              2- charges		
+                            	
