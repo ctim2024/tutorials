@@ -131,5 +131,9 @@ watch kubectl get pods -n jenkins
 
 # Kubernetes cluster components
 
-kubectl get componentstatuses                                              : Checking the status of the Control Plane components
+kubectl get componentstatuses                                                                                         : Checking the status of the Control Plane components
+kubectl get po -o custom-columns=POD:metadata.name,NODE:spec.nodeName --sort-by spec.nodeName -n kube-system          : running pods system under namespace kube-system
+etcdctl ls /registry                                                                                                  : list of keys in etcd
+etcdctl ls /registry/pods                                                                                             : shows the contents of the /registry/pods directory
+etcdctl ls /registry/pods/default                                                                                     : //         //               //             //      in namespace default
 
