@@ -119,3 +119,17 @@ kubectl exec kubia-2r1qb -- touch /var/ready
 
 #port forwarding
 kubectl port-forward mysql-nfs-65758cdc9d-c5kqb 3306:3306 --address='0.0.0.0'  
+
+
+
+# show config
+kubectl config view
+
+# watch the creation of pods
+watch kubectl get pods -n jenkins
+
+
+# Kubernetes cluster components
+
+kubectl get componentstatuses                                              : Checking the status of the Control Plane components
+
