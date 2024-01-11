@@ -1,0 +1,15 @@
+curl http://localhost:5000/v2/_catalog                                                        : get list of images in registry
+curl -s GET http://localhost:5000/v2/analysephosphatebackend/tags/list                        : list of tag of specified image
+curl -s GET http://localhost:5000/v2/analysephosphatebackend/manifests/version-6              : get manifest
+
+#delete image from registry
+1- 
+curl -v --silent -H "Accept: application/vnd.docker.distribution.manifest.v2+json" -X GET  http://localhost:5000/v2/analysephosphatebackend/manifests/version-6 2>&1 | grep Docker-Content-Digest | awk '{print ($3)}'
+
+-> this command output hashcode like : sha256:163b9a441bda4a214feb2110e98475ecf6ebb4fc1ad091359679b225c2ccaed2
+
+2- 
+curl -v --silent -H "Accept: application/vnd.docker.distribution.manifest.v2+json" -X DELETE  http://localhost:5000/v2/analysephosphatebackend/manifests/sha256:163b9a441bda4a214feb2110e98475ecf6ebb4fc1ad091359679b225c2ccaed2
+
+-> this command delete image
+

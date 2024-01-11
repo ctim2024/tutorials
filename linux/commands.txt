@@ -498,6 +498,9 @@ Base Folder (where OS is stored)    C:\              /
 
     -> unrar x gmaoF0120.rar
 
+
+# show active ports
+lsof -i -P -n | grep LISTEN
     	 
 	 
 	 
