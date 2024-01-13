@@ -1,0 +1,40 @@
+command                                                         designation
+docker --version                                                version
+ducker pull nginx                                               download image nginx
+docker images                                                   show images installed in docker
+docker run -d nginx:latest                                      run and create a container that's mean instance of image
+docker container ls                                             show details about running containers
+docker ps                                                       show details about running containers
+docker stop container_id/or container_name                      stop running container
+docker run -d -p 8080:80 nginx:latest                           mapping port 80 with 8080 : 8080 is the expose port we will use this port to access this container from navigator we can mapping many ports just every time we add -p 8081:80 or else
+docker start container_id/or container_name                     start container
+docker ps -a                                                    show all containers
+docker rm container_id/container_name                           delete container 
+docker ps -aq                                                   show only containers ids
+docker run --name website1 -d -p 8000:80 nginx:latest           run create container and give it a name website1
+
+#Format output of docker ps command
+1- set FORMAT=ID\t{{.ID}}\nNAME\t{{.Names}}\nImage\t{{.Image}}\nPORTS\t{{.Ports}}\nCOMMAND\t{{.Command}}\nCREATED\t{{.CreatedAt}}\nSTATUS\t{{.Status}}\n
+2- docker ps -a --format=%FORMAT%
+
+
+docker run --name website2 -d -v %cd%:/usr/share/nginx/html:ro -p 8080:80 nginx                  cluster local directory to /usr/share/nginx/html in this example we copy index.html 
+# these to enter under container website 2
+docker exec -it website2 bash                                    enter under the container and 
+ls -al                                                           to show all subdirectories
+exit                                                             to exit from bash
+
+
+#
+docker rm -f website2                                          remove container in running
+docker system prune -a                                         This will remove: - all stopped containers - all networks not used by at least one container - all images without at least one container associated to them  - all build cache
+sudo docker logs server-mysql                                  show logs of container
+sudo docker container prune                                    delete all non running containers
+sudo docker rmi image_id                                       delete image
+sudo docker build -t springboot_analyse .                      build image from Dockerfile
+
+
+
+
+
+
