@@ -4,12 +4,10 @@ curl -s GET http://localhost:5000/v2/analysephosphatebackend/manifests/version-6
 
 #delete image from registry
 1- 
-curl -v --silent -H "Accept: application/vnd.docker.distribution.manifest.v2+json" -X GET  http://localhost:5000/v2/analysephosphatebackend/manifests/version-6 2>&1 | grep Docker-Content-Digest | awk '{print ($3)}'
-
--> this command output hashcode like : sha256:163b9a441bda4a214feb2110e98475ecf6ebb4fc1ad091359679b225c2ccaed2
-
-2- 
-curl -v --silent -H "Accept: application/vnd.docker.distribution.manifest.v2+json" -X DELETE  http://localhost:5000/v2/analysephosphatebackend/manifests/sha256:163b9a441bda4a214feb2110e98475ecf6ebb4fc1ad091359679b225c2ccaed2
-
--> this command delete image
+-> docker inspect <registry-container-id>
+get  "Source": "/var/lib/docker/volumes/797fc0c43eb750ad33da9e5e55e70c57b7d5eb26786280b31d4e91a5d5aac8b3/_data",
+-> cd /var/lib/docker/volumes/797fc0c43eb750ad33da9e5e55e70c57b7d5eb26786280b31d4e91a5d5aac8b3/_data/docker/registry/v2/repositories
+-> rm -rf <repository>
+-> docker restart <registry-container-id> (we restart registry to can push this image another time and can view this image in repositories listing)
+if i don't restart the container registry, when i push the image another time it will not be appeared in the list of images
 
