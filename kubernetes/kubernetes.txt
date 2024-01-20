@@ -21,7 +21,7 @@ kubectl port-forward kubia-manual 8888:8080                                 #The
 kubectl delete pod --all                                                    #delete all pods under default namespace
 kubectl delete po -l app=analyse                                            #delete all pods related to label app=analyse
 kubectl delete ns custom-namespace                                          #delete all pods under namespace by deleting this namespace
-kubectl get pod --show-labels           				    #show labels of pod
+kubectl get pod --show-labels           				                    #show labels of pod
 kubectl get pods
 kubectl get pods -o wide                                                    #get more details
 kubectl describe pod
@@ -138,3 +138,7 @@ etcdctl ls /registry/pods                                                       
 etcdctl ls /registry/pods/default                                                                                     : //         //               //             //      in namespace default
 kubectl get pods --watch                                                                                              : client kubectl watch the creation of pods online
 
+
+#sericeAccount
+
+kubectl patch serviceaccount default -p '{"imagePullSecrets": [{"name": "my-registry-secret"}]}'                      # add secret of docker registry to default serviceAccount
