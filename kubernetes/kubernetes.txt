@@ -139,6 +139,9 @@ etcdctl ls /registry/pods/default                                               
 kubectl get pods --watch                                                                                              : client kubectl watch the creation of pods online
 
 
+# create secret for docker registry
+kubectl create secret docker-registry my-secret --docker-server=DOCKER_REGISTRY_SERVER --docker-username=DOCKER_USER --docker-password=DOCKER_PASSWORD --docker-email=DOCKER_EMAIL
+
 #sericeAccount
 
 kubectl patch serviceaccount default -p '{"imagePullSecrets": [{"name": "my-registry-secret"}]}'                      # add secret of docker registry to default serviceAccount
