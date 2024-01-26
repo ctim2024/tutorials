@@ -11,3 +11,80 @@ get  "Source": "/var/lib/docker/volumes/797fc0c43eb750ad33da9e5e55e70c57b7d5eb26
 -> docker restart <registry-container-id> (we restart registry to can push this image another time and can view this image in repositories listing)
 if i don't restart the container registry, when i push the image another time it will not be appeared in the list of images
 
+
+# create private registry docker with certificate 
+
+0- create directory called docker-registry under /home/ctim and create certs dir under docker-registry and volume dir 
+
+1-create certificate :
+   1.1- touch openssl.conf 
+   1.2- add this content to file :
+############################################
+[ req ]
+distinguished_name = req_distinguished_name
+x509_extensions     = req_ext
+default_md         = sha256
+prompt             = no
+encrypt_key        = no
+
+[ req_distinguished_name ]
+countryName            = "GB"
+localityName           = "London"
+organizationName       = "Just Me and Opensource"
+organizationalUnitName = "YouTube"
+commonName             = "10.71.1.52"
+emailAddress           = "test@example.com"
+
+[ req_ext ]
+subjectAltName = @alt_names
+
+[alt_names]
+IP.1 = "10.71.1.52"
+
+###################################################
+
+    1.3- openssl req -x509 -newkey rsa:4096 -days 365 -config openssl.conf -keyout certs/registry.key -out certs/registry.crt
+    1.4- openssl x509 -text -noout -in certs/registry.crt          #this is for verifying the certificate
+    
+# in worker nodes
+2-cp registry.crt /usr/local/share/ca-certificates/ca.crt
+3-update-ca-certificates
+4-reboot
+
+#in master
+
+5- create docker-compose.yaml with this content :
+
+---
+version: '3'
+
+services:
+    docker-registry:
+        container_name: docker-registry
+        image: registry
+        ports:
+            - 5000:5000
+        environment:
+          - REGISTRY_HTTP_TLS_CERTIFICATE=/certs/registry.crt 
+          - REGISTRY_HTTP_TLS_KEY=/certs/registry.key 
+        restart: always
+        volumes:
+            - ./volume:/var/lib/registry
+            - ./certs:/certs
+    docker-registry-ui:
+        container_name: docker-registry-ui
+        image: konradkleine/docker-registry-frontend:v2
+        ports:
+            - 8443:443
+        environment:
+            ENV_DOCKER_REGISTRY_HOST: docker-registry
+            ENV_DOCKER_REGISTRY_PORT: 5000
+            ENV_DOCKER_REGISTRY_USE_SSL: 1
+            ENV_USE_SSL: 1
+        restart: always
+        volumes:
+           - ./certs/registry.crt:/etc/apache2/server.crt:ro
+           - ./certs/registry.key:/etc/apache2/server.key:ro
+
+6- docker-compose up -d          #this command will create two container one for registry and other for web ui
+

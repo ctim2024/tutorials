@@ -1,3 +1,12 @@
 kubeadm join 192.168.1.7:6443 --token sfz1vp.b4j8zii2f6910xft \
 	--discovery-token-ca-cert-hash sha256:181ecbd30023563a59652413b87b9ee056754479278135879290c1a93e6d9d08 
 
+
+docker run -d -p 5000:443 --restart=always --name docker-registry -v "$(pwd)"/auth:/auth -v "$(pwd)"/certificates:/opt/certs 
+-e  REGISTRY_HTTP_ADDR=0.0.0.0:443 \
+-e  REGISTRY_HTTP_TLS_CERTIFICATE = "$(pwd)"/certificates/server.crt \
+-e  REGISTRY_HTTP_TLS_KEY = "$(pwd)"/certificates/server.key \
+-e "REGISTRY_AUTH=htpasswd" \
+-e "REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm" \
+-e REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd \
+registry:2
