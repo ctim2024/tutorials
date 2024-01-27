@@ -7,7 +7,7 @@ kubectl label node minikube disk=hdd --overwrite                           #over
 kubectl get endpoints analyse-frontend-service
 
 
-#igness
+#ingress
 kubectl get ingresses
 k logs nginx-ingress-microk8s-controller-kgwtf -n ingress --since 10s
 
@@ -46,6 +46,10 @@ kubectl get po --namespace kube-system                                      #get
 kubectl create -f custom-namespace.yaml                                     #create namespace from yaml file
 kubectl create namespace custom-namespace                                   #create namespace throught command
 kubectl delete ns custom-namespace                                          #delete namespace and its pods
+kubectl config set-context --current --namespace=analyse                    #change namespace and put analyse as namespace
+kubectl config view --minify --output 'jsonpath={..namespace}'              #display the default ns
+kubectl delete all --all -n namespace                                       #delete all resources under namespace like pods services replicaControllers.. You should specify the name of the namespace otherwise will delete resources in default namespace 
+
 
 #replicationcontroller
 k apply -f analyse-front-manual.yml                                         #create new replicaController
@@ -91,18 +95,24 @@ kubectl set image deployment kubia nodejs=luksa/kubia:v2                 # chang
 kubectl rollout undo deployment kubia                                    # undoing rollout return to the old version
 kubectl rollout history deployment kubia                                 # diplay revision history
 kubectl delete deployment --all
-
-
-
-
-
-kubectl delete service --all                                    
-kubectl delete all --all -n namespace                                     #delete all resources under namespace like pods services replicaControllers.. You should specify the name of the namespace otherwise will delete resources in default namespace 
-
-
-
-
 kublctl create deployment --image=nginx nginx-app
+kubectl scale deployment analysefrontend --replicas 3                    #modify number of replicas
+
+
+
+
+#service
+kubectl expose deployment analyse-front-dpl   --port=8085 --type=LoadBalancer    # expose my deployement through a service of type LoadBalancer
+kubectl delete service --all                                    
+
+
+
+
+
+
+
+
+
 
 kubectl explain pods                                                       # explain architacture of yaml file
 kubectl explain pod.spec                                                   # explain spec part architacture of yaml file
@@ -111,10 +121,7 @@ kubectl explain pod.spec                                                   # exp
 
 
 
-minikube status
-minikube start
-sudo usermod -aG docker $USER && newgrp docker
-kubectl exec kubia-2r1qb -- touch /var/ready
+
 
 
 #port forwarding
@@ -122,7 +129,7 @@ kubectl port-forward mysql-nfs-65758cdc9d-c5kqb 3306:3306 --address='0.0.0.0'
 
 
 
-# show config
+#show config
 kubectl config view
 
 # watch the creation of pods
@@ -148,3 +155,4 @@ kubectl patch serviceaccount default -p '{"imagePullSecrets": [{"name": "my-regi
 
 #show events now executing in kubernetes
 k get events -w
+k get events --sort-by=.metadata.creationTimestamp
