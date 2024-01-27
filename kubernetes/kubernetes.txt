@@ -145,3 +145,6 @@ kubectl create secret docker-registry my-secret --docker-server=DOCKER_REGISTRY_
 #sericeAccount
 
 kubectl patch serviceaccount default -p '{"imagePullSecrets": [{"name": "my-registry-secret"}]}'                      # add secret of docker registry to default serviceAccount
+
+#show events now executing in kubernetes
+k get events -w

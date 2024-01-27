@@ -17,6 +17,7 @@ if i don't restart the container registry, when i push the image another time it
 0- create directory called docker-registry under /home/ctim and create certs dir under docker-registry and volume dir 
 
 1-create certificate :
+   1.0- cd certs
    1.1- touch openssl.conf 
    1.2- add this content to file :
 ############################################
@@ -53,7 +54,14 @@ IP.1 = "10.71.1.52"
 
 #in master
 
-5- create docker-compose.yaml with this content :
+
+
+5- create login password for registry
+  5.1- mkdir auth
+  5.2- htpasswd -Bbn boubaker ctim2020 > auth/htpasswd  
+  
+  
+6- create docker-compose.yaml with this content :
 
 ---
 version: '3'
@@ -67,10 +75,14 @@ services:
         environment:
           - REGISTRY_HTTP_TLS_CERTIFICATE=/certs/registry.crt 
           - REGISTRY_HTTP_TLS_KEY=/certs/registry.key 
+		  - REGISTRY_AUTH= htpasswd
+          - REGISTRY_AUTH_HTPASSWD_PATH= /auth/htpasswd
+          - REGISTRY_AUTH_HTPASSWD_REALM= Registry Realm
         restart: always
         volumes:
             - ./volume:/var/lib/registry
             - ./certs:/certs
+			- ./auth:/auth
     docker-registry-ui:
         container_name: docker-registry-ui
         image: konradkleine/docker-registry-frontend:v2
@@ -86,5 +98,9 @@ services:
            - ./certs/registry.crt:/etc/apache2/server.crt:ro
            - ./certs/registry.key:/etc/apache2/server.key:ro
 
-6- docker-compose up -d          #this command will create two container one for registry and other for web ui
+7- docker-compose up -d          #this command will create two container one for registry and other for web ui  
 
+######this part is configure to access docker registry from kubernetes cluster
+
+8- k create secret docker-registry mydockercredentials --docker-server 10.71.1.52:5000 --docker-username boubaker --docker-password ctim2020
+9- k patch serviceaccount default -p '{"imagePullSecrets": [{"name": "mydockercredentials"}]}'
