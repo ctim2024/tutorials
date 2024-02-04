@@ -1,0 +1,2 @@
+kubeadm join 192.168.31.13:6443 --token sobrkx.ex2yjn1sytm3tbxb \
+	--discovery-token-ca-cert-hash sha256:fbff80242e0d66d589ea493890be00b0fedd10380373697caa5231af919e2f84

@@ -75,7 +75,7 @@ services:
         environment:
           - REGISTRY_HTTP_TLS_CERTIFICATE=/certs/registry.crt 
           - REGISTRY_HTTP_TLS_KEY=/certs/registry.key 
-		  - REGISTRY_AUTH= htpasswd
+          - REGISTRY_AUTH= htpasswd
           - REGISTRY_AUTH_HTPASSWD_PATH= /auth/htpasswd
           - REGISTRY_AUTH_HTPASSWD_REALM= Registry Realm
         restart: always

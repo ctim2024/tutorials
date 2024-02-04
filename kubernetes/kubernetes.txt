@@ -1,3 +1,6 @@
+#general
+kubectl get all -A                                                         #get all resources in all namespaces
+
 #node
 kubectl get nodes   -o yaml                                                #get all nodes in cluster
 kubectl label node minikube disk=ssd                                       #add label to node minikube

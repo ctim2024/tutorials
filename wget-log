@@ -2,11 +2,31 @@ kubeadm join 192.168.1.7:6443 --token sfz1vp.b4j8zii2f6910xft \
 	--discovery-token-ca-cert-hash sha256:181ecbd30023563a59652413b87b9ee056754479278135879290c1a93e6d9d08 
 
 
-docker run -d -p 5000:443 --restart=always --name docker-registry -v "$(pwd)"/auth:/auth -v "$(pwd)"/certificates:/opt/certs 
--e  REGISTRY_HTTP_ADDR=0.0.0.0:443 \
--e  REGISTRY_HTTP_TLS_CERTIFICATE = "$(pwd)"/certificates/server.crt \
--e  REGISTRY_HTTP_TLS_KEY = "$(pwd)"/certificates/server.key \
--e "REGISTRY_AUTH=htpasswd" \
--e "REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm" \
--e REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd \
-registry:2
+
+NAME: jenkins
+LAST DEPLOYED: Sun Feb  4 13:35:36 2024
+NAMESPACE: jenkins
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+CHART NAME: jenkins
+CHART VERSION: 12.6.7
+APP VERSION: 2.426.3
+
+** Please be patient while the chart is being deployed **
+
+1. Get the Jenkins URL by running:
+
+** Please ensure an external IP is associated to the jenkins service before proceeding **
+** Watch the status using: kubectl get svc --namespace jenkins -w jenkins **
+
+  export SERVICE_IP=$(kubectl get svc --namespace jenkins jenkins --template "{{ range (index .status.loadBalancer.ingress 0) }}{{ . }}{{ end }}")
+  echo "Jenkins URL: http://$SERVICE_IP/"
+
+2. Login with the following credentials
+
+  echo Username: user
+  echo Password: $(kubectl get secret --namespace jenkins jenkins -o jsonpath="{.data.jenkins-password}" | base64 -d)
+
+
