@@ -1,0 +1,2 @@
+#ingress problem /app-analyse don't work but / work 
+solution : you should add this line in annotation : nginx.ingress.kubernetes.io/rewrite-target: /

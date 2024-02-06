@@ -1,0 +1,7 @@
+Steps to install kubernetes dashboard :
+1- go to https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/  and follow steps in the tutorial and create user like in the tutorial
+2- run this command : k get svc kubernetes-dashboard -n kubernetes-dashboard -o yaml > kubernetes-dashboard-svc.yaml
+3- nano kubernetes-dashboard-svc.yaml and change from ClusterIP to NodePort
+4- k apply -f kubernetes-dashboard-svc.yaml
+5- https://192.168.31.13:nodeport
+6- get token like in the tutorial

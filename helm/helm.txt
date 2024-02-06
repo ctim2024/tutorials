@@ -1,0 +1,9 @@
+helm create hello                                        :create new chart (by default will create deploy of nginx)
+helm list -a                                             :list of charts
+helm install helloworld hello                            :this command will install the chart in k8s cluster (create deploy service configmap....)
+helm upgrade helloworld hello                            :this is for update existing chart (when i change for example number of replicas in values.yaml i apply this command)
+helm rollback helloworld 1                               :return or rollback to revision number 1 (cancel update)
+helm install helloworld --debug --dry-run hello          :this command is to view manifests or chars after modification and before installation to confirm and correct mistakes and after you can install(this command validate the chart with k8s)
+helm template hello                                      :this command is like previous command but template here verify only syntax of chart and don't validate resources with k8s
+helm lint hello                                          :check if there are any error in chart before installation
+helm uninstall helloworld                                :uninstall chart

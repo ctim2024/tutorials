@@ -159,3 +159,13 @@ kubectl patch serviceaccount default -p '{"imagePullSecrets": [{"name": "my-regi
 #show events now executing in kubernetes
 k get events -w
 k get events --sort-by=.metadata.creationTimestamp
+<<<<<<< HEAD
+=======
+
+
+
+#api kubernetes cluster
+k proxy &                                                                            : start server
+curl 127.0.0.1:8001                                                                  : read all api
+curl 127.0.0.1:8001/api/v1                                                           : read resouces and operations that we can do with resources under /api/v1
+>>>>>>> refs/remotes/origin/master

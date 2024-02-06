@@ -57,6 +57,13 @@ git pull origin       # git pull = git fetch + get merge
 git branch -vv        # correspond branches between local and remote
 git log -10           # 10 commits only
 git log --oneline --all    #display all commits in local or in remote
+git remote add gigos_origin http://10.71.1.53:3001/bojr/analyse-django.git                 # add remote repo
+git remote rm gigos_origin                                                                 # delete remote
+ 
+
+
+
+
 
 #undoing
 git reset --hard HEAD~1    #rollback to before last commit and change working directory with this commit : here will modify directely all last commit changes from working tree
@@ -78,3 +85,8 @@ To push the current branch and set the remote as upstream, use
 
 Fix : that's mean you try to push the branch in local named test to remote branch also named test but in remote you don't have this remote, for that it propose to create this branch in remote before pushing
 conclusion : git push pushes from master to master or from main to main or from test to test , you should have the same branch in remote repo.
+
+
+
+
+

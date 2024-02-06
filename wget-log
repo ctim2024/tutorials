@@ -2,31 +2,5 @@ kubeadm join 192.168.1.7:6443 --token sfz1vp.b4j8zii2f6910xft \
 	--discovery-token-ca-cert-hash sha256:181ecbd30023563a59652413b87b9ee056754479278135879290c1a93e6d9d08 
 
 
-
-NAME: jenkins
-LAST DEPLOYED: Sun Feb  4 13:35:36 2024
-NAMESPACE: jenkins
-STATUS: deployed
-REVISION: 1
-TEST SUITE: None
-NOTES:
-CHART NAME: jenkins
-CHART VERSION: 12.6.7
-APP VERSION: 2.426.3
-
-** Please be patient while the chart is being deployed **
-
-1. Get the Jenkins URL by running:
-
-** Please ensure an external IP is associated to the jenkins service before proceeding **
-** Watch the status using: kubectl get svc --namespace jenkins -w jenkins **
-
-  export SERVICE_IP=$(kubectl get svc --namespace jenkins jenkins --template "{{ range (index .status.loadBalancer.ingress 0) }}{{ . }}{{ end }}")
-  echo "Jenkins URL: http://$SERVICE_IP/"
-
-2. Login with the following credentials
-
-  echo Username: user
-  echo Password: $(kubectl get secret --namespace jenkins jenkins -o jsonpath="{.data.jenkins-password}" | base64 -d)
-
+eyJhbGciOiJSUzI1NiIsImtpZCI6Ikk1S3ZJOHAxN3g1cWlTd2RFd05jT3h4dXZwSzlySHMyQXVaRUNNYk1SQ2cifQ.eyJhdWQiOlsiaHR0cHM6Ly9rdWJlcm5ldGVzLmRlZmF1bHQuc3ZjLmNsdXN0ZXIubG9jYWwiXSwiZXhwIjoxNzA3MjQ1NzYyLCJpYXQiOjE3MDcyNDIxNjIsImlzcyI6Imh0dHBzOi8va3ViZXJuZXRlcy5kZWZhdWx0LnN2Yy5jbHVzdGVyLmxvY2FsIiwia3ViZXJuZXRlcy5pbyI6eyJuYW1lc3BhY2UiOiJrdWJlcm5ldGVzLWRhc2hib2FyZCIsInNlcnZpY2VhY2NvdW50Ijp7Im5hbWUiOiJhZG1pbi11c2VyIiwidWlkIjoiZjdhZDYyYWItNmViNy00ZTA3LTgwZTItMjI5OWIzOWJiNmU1In19LCJuYmYiOjE3MDcyNDIxNjIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDprdWJlcm5ldGVzLWRhc2hib2FyZDphZG1pbi11c2VyIn0.ksxxT5zhGb7RqiCEok-T4t6Z3ZGW_cSUom8jpe1CdcIl95DA-FpzsW3q_GpkA9-hz4x5UJpFnjqhxjuwNxKaeefS0ZICRHDKhnicNFiY4089kjoUiVxl1Gh57i7UD0YDKGBs-Rtc9lLxV5Cy_f4LPBxGfG9GIt60d7KbkaWTVoy4m1gC_sGMrzNoo0pSuS4w8UOrDXPcF8RkSKO0bP6Lqpklh7IHQdx-OTBoBuAPPRqzhkKK0Rvg8XJFaKds_2coygCLGWmauNvDCp7oNr_ee3bS0mx9jGjkp44Wqysu3iJw_hkatvvGToWG2J3ftIJUfX85mgUGzlj4yaldSbSw3g
 
