@@ -4,3 +4,8 @@ install master slave in jenkins :
  2- create workespace in every node like /jenkins-agent
  3- chmod 777 /jenkins-agent
  4- add node in jenkins and add ssh credentials for example user ctim address 192.168.1.7 and password ctim2020 (ctim@192.168.1.7) 
+ 5- configure ssh in jenkins host (the host included jenkins) :
+    1- mkdir -p /var/lib/jenkins/.ssh
+    2- chmod 777  /var/lib/jenkins/.ssh
+    3- ssh-keyscan -H 192.168.1.7 >> /var/lib/jenkins/.ssh/known_hosts
+    4- chmod 755  /var/lib/jenkins/.ssh
