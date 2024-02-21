@@ -1,0 +1,6 @@
+install master slave in jenkins :
+
+ 1- install jdk in every slave node : apt install openjdk-17-jdk-headless
+ 2- create workespace in every node like /jenkins-agent
+ 3- chmod 777 /jenkins-agent
+ 4- add node in jenkins and add ssh credentials for example user ctim address 192.168.1.7 and password ctim2020 (ctim@192.168.1.7) 
