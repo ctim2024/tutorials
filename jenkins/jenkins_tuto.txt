@@ -1,4 +1,4 @@
-Pipeline Concepts :
+1- Pipeline Concepts :
 
   - Pipeline : A user defined block which contains all the stages. It is a key part of declarative pipeline syntax.
   
@@ -11,3 +11,17 @@ Pipeline Concepts :
   node {
   
   }
+  
+2- Create pipeline :
+
+ look at folder create_pipeline_steps 
+ 
+3- Tips : 
+ 
+   Recommanded to not use controller node or the node where jenkins is installed to execute jobs
+   It is recommended to create agents and run inside it the jobs
+   The agent can be any host or vm that contain jdk installed (for exemple we create agent in windows other in linux ....)
+   Agent where we run the job should have all necessary programs to do the work (for exemple : my job execute xx.py a python file , the agent should have the python installed on it)
+   When we configure the node we have the input box for Executor : when we put 0 that's mean we discard this node , 1 we can do one job (thread) , 2 two job etc ( we can't exceed the number of core cpu in vm or host)
+   Labels are used to identify agents
+   
