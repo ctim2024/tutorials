@@ -9,3 +9,14 @@ install master slave in jenkins :
     2- chmod 777  /var/lib/jenkins/.ssh
     3- ssh-keyscan -H 192.168.1.7 >> /var/lib/jenkins/.ssh/known_hosts
     4- chmod 755  /var/lib/jenkins/.ssh
+
+create pipeline :
+
+ look at folder create_pipeline_steps 
+
+install git : 
+
+ 1- install plugin git if not installed
+ 2- create token for access in github.
+ 3- create credentials with username for exemple ctim2024 and password the token created in github
+ 4- use git in you projet by checking the git box or for pipeline by choose SCM
