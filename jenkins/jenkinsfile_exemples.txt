@@ -1,0 +1,77 @@
+exemple 1 :
+
+pipeline {
+  agent any 
+    stages {
+      stage('one'){
+        steps {
+          sh 'javac Main.java'
+		  sh 'java Main'
+        }
+      }
+      stage('two'){
+        steps {
+          input('Do you want to proceed ?')
+        }
+      }
+      stage('three'){
+        when {
+          not {
+            branch "master"
+          }
+        }
+        steps {
+          echo 'hello'
+        }
+      }
+      stage('four'){
+        parallel {
+          stage('unit Test'){
+            steps {
+              echo 'Running the unit test...'
+            }
+          }
+          stage('Integration test'){
+            agent {
+              docker {
+                reuseNode false
+                image 'ubuntu'
+              }
+            }
+            steps {
+              echo 'Running the integration test..'
+            }
+          }
+          
+        }
+      }
+    }
+}
+
+
+
+exemple 2 : 
+
+pipeline {
+    agent none 
+    stages {
+        stage('one'){
+            agent { label 'slave1' }
+            steps {
+                echo 'this is in agent slave 1'
+            }
+        }
+        stage('two'){
+            agent { label 'slave2' }
+            steps {
+                echo 'this is in agent slave 2'
+            }
+        }
+        stage('three'){
+            agent { label 'windows' }
+            steps {
+                echo 'this is in agent windows'
+            }
+        }
+    }
+}

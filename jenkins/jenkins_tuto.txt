@@ -1,0 +1,13 @@
+Pipeline Concepts :
+
+  - Pipeline : A user defined block which contains all the stages. It is a key part of declarative pipeline syntax.
+  
+  pipeline {
+  
+  }
+  
+  - Node : A node is a machine that executes an entire workflow. It is a key part of the scripted pipeline syntax.
+  
+  node {
+  
+  }
