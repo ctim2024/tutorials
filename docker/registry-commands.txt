@@ -12,6 +12,12 @@ get  "Source": "/var/lib/docker/volumes/797fc0c43eb750ad33da9e5e55e70c57b7d5eb26
 if i don't restart the container registry, when i push the image another time it will not be appeared in the list of images
 
 
+
+
+
+
+
+
 # create private registry docker with certificate 
 
 0- create directory called docker-registry under /home/ctim and create certs dir under docker-registry and volume dir 

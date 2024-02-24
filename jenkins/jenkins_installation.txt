@@ -42,3 +42,6 @@ docker :
   4- create new Access Token
   5- in jenkins : create new Credentials with username: boubaker1982 and password : accessToken   ID : boubaker1982-dockerhub (this id will be used to access docker hub from jenkinsfile)
   
+  config jenkins to push in local registry :
+  
+  * same steps as earlier but we use credentials of local registry login and password

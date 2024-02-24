@@ -115,3 +115,48 @@ pipeline {
      }
    }
 }
+
+
+exemple 4 : (login in local registry with other method to put credentials)
+
+
+pipeline {
+  agent any
+  environment {
+    REGISTRY_URL = '10.71.1.52:5000'
+  }
+  stages {
+   stage('build project'){
+     steps {
+       sh 'mvn clean install'
+      }
+     }
+   stage('build image'){
+     steps {
+       sh 'docker build -t 10.71.1.52:5000/analysephosphatebackend:v8 .'
+      }
+     }
+
+   stage('login dockerhub'){
+   
+     steps {
+      
+      withCredentials([usernamePassword(credentialsId: 'local-registry', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+          sh "docker login $REGISTRY_URL -u $USERNAME -p $PASSWORD"
+      }
+       }
+      }
+   stage('push image'){
+   
+     steps {
+       sh 'docker push 10.71.1.52:5000/analysephosphatebackend:v8'
+       }
+     }
+
+   }
+   post {
+     always {
+      sh 'docker logout $REGISTRY_URL'
+     }
+   }
+}
