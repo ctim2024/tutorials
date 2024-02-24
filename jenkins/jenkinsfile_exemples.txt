@@ -75,3 +75,43 @@ pipeline {
         }
     }
 }
+
+
+exemple 3 : (login in docker hub with credentials and push image )
+
+pipeline {
+  agent any
+  environment {
+    DOCKERHUB_CREDENTIALS = credentials('boubaker1982-dockerhub')
+  }
+  stages {
+   stage('build project'){
+     steps {
+       sh 'mvn clean install'
+      }
+     }
+   stage('build image'){
+     steps {
+       sh 'docker build -t boubaker1982/analysephosphatebackend:v8 .'
+      }
+     }
+   stage('login dockerhub'){
+   
+     steps {
+       sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+       }
+      }
+   stage('push image'){
+   
+     steps {
+       sh 'docker push boubaker1982/analysephosphatebackend:v8'
+       }
+     }
+
+   }
+   post {
+     always {
+      sh 'docker logout'
+     }
+   }
+}
