@@ -75,3 +75,140 @@ pipeline {
         }
     }
 }
+
+
+exemple 3 : (login in docker hub with credentials and push image )
+
+pipeline {
+  agent any
+  environment {
+    DOCKERHUB_CREDENTIALS = credentials('boubaker1982-dockerhub')
+  }
+  stages {
+   stage('build project'){
+     steps {
+       sh 'mvn clean install'
+      }
+     }
+   stage('build image'){
+     steps {
+       sh 'docker build -t boubaker1982/analysephosphatebackend:v8 .'
+      }
+     }
+   stage('login dockerhub'){
+   
+     steps {
+       sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+       }
+      }
+   stage('push image'){
+   
+     steps {
+       sh 'docker push boubaker1982/analysephosphatebackend:v8'
+       }
+     }
+
+   }
+   post {
+     always {
+      sh 'docker logout'
+     }
+   }
+}
+
+
+exemple 4 : (login in local registry with other method to put credentials)
+
+
+pipeline {
+  agent any
+  environment {
+    REGISTRY_URL = '10.71.1.52:5000'
+  }
+  stages {
+   stage('build project'){
+     steps {
+       sh 'mvn clean install'
+      }
+     }
+   stage('build image'){
+     steps {
+       sh 'docker build -t 10.71.1.52:5000/analysephosphatebackend:v8 .'
+      }
+     }
+
+   stage('login dockerhub'){
+   
+     steps {
+      
+      withCredentials([usernamePassword(credentialsId: 'local-registry', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+          sh "docker login $REGISTRY_URL -u $USERNAME -p $PASSWORD"
+      }
+       }
+      }
+   stage('push image'){
+   
+     steps {
+       sh 'docker push 10.71.1.52:5000/analysephosphatebackend:v8'
+       }
+     }
+
+   }
+   post {
+     always {
+      sh 'docker logout $REGISTRY_URL'
+     }
+   }
+}
+
+exemple 5 : (add update deployment in kubernetes cluster)
+
+pipeline {
+  agent any
+  environment {
+    DOCKERHUB_CREDENTIALS = credentials('local-registry')
+    REGISTRY_URL = '10.71.1.52:5000'
+  }
+  stages {
+   stage('build project'){
+     steps {
+       sh 'mvn clean install'
+      }
+     }
+   stage('build image'){
+     steps {
+       sh 'docker build -t 10.71.1.52:5000/analysephosphatebackend:v8 .'
+      }
+     }
+
+   stage('login dockerhub'){
+   
+     steps {
+      script {
+      withCredentials([usernamePassword(credentialsId: 'local-registry', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+          sh """
+           docker login $REGISTRY_URL -u $USERNAME -p $PASSWORD
+           """
+             }
+         }
+       }
+      }
+   stage('push image'){
+   
+     steps {
+       sh 'docker push 10.71.1.52:5000/analysephosphatebackend:v8'
+       }
+     }
+   stage('deployment'){
+   
+     steps {
+       sh 'kubectl set image deployment analyse-back-dpl analyse-back=10.71.1.52:5000/analysephosphatebackend:v2 -n analyse'
+       }
+     }
+   }
+   post {
+     always {
+      sh 'docker logout $REGISTRY_URL'
+     }
+   }
+}

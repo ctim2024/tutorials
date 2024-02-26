@@ -20,3 +20,28 @@ install git :
  2- create token for access in github.
  3- create credentials with username for exemple ctim2024 and password the token created in github
  4- use git in you projet by checking the git box or for pipeline by choose SCM
+
+
+maven :
+
+ 1- install maven in agent
+ 2- install maven plugin in jenkins
+ 3- configure jenkins
+    1- go to tools
+    2- installations Maven and add Maven : MAVEN_HOME : /usr/lib/apache-maven-3.9.6 and NOM : Maven
+    3- add git executable path in tools
+
+
+docker :
+
+  config jenkins to push in docker hub :
+
+  1- access to docker hub with your account
+  2- click on your account button 
+  3- choose security
+  4- create new Access Token
+  5- in jenkins : create new Credentials with username: boubaker1982 and password : accessToken   ID : boubaker1982-dockerhub (this id will be used to access docker hub from jenkinsfile)
+  
+  config jenkins to push in local registry :
+  
+  * same steps as earlier but we use credentials of local registry login and password
