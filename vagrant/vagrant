@@ -12,4 +12,13 @@ step 7 : Start vm using command : - vagrant up (this will create a new vm using 
 
 step 8 : SSH into the vm : - vagrant ssh
 
-                           - /home/boubaker/.vagrant.d/boxes  : the home of boxes in your host                           
+                           - /home/boubaker/.vagrant.d/boxes  : the home of boxes in your host    
+          
+
+
+Provision the vm : 
+   Provisionning a virtual machine means process of setting up and configuring a vm with necessary software and resources needed for a particular task or application
+   Provisionning can be done by logging into the vm and making the necessary changes or it can be automated using configuration management tools like Ansible, Chef, or Puppet.
+   Automated provisionning can save time and ensure consistency across multiple vms or environments.
+   Vagrant allows for easy provisioning of vms using configuration files called "Vagrantfiles" which specify the desired state of the vm.
+                         
