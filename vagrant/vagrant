@@ -112,4 +112,122 @@ These files are separate from the snapshot and can be shared or version controll
 
 
 Step 5 - You should see the contents of the shared folder from your host machine in the guest machine's folder 
+
+
+
+PLUGINS :
+
+
+
+What are plugins
+How to install plugins
+How to list plugins
+How to uninstall plugins
+Where are vagrant plugins located
+Add plugin to Vagrant env (Vagrantfile)
+See all available Plugins for Vagrant
+
+Plugins are add-ons to enhance functionality of a tool
+
+vagrant plugin --help   to see subcommands and options
+vagrant plugin list   to list all installed plugins
+vagrant plugin install vbinfo to install a plugin
+vagrant vbinfo    to use the plugin
+vagrant plugin update vbinfo to update a plugin
+vagrant plugin repair   to repair installed plugins in case of error
+vagrant plugin license [license_file] to associate the plugin with a license file
+vagrant plugin uninstall vbinfo  to remove plugin
+vagrant plugin expunge   to delete all plugins
+vagrant plugin expunge --reinstall to reinstall all expunged plugins
+Available Plugins : https://github.com/hashicorp/vagrant/... 
+
+Plugins location on host system
+Win : C:\Users\＜username＞\.vagrant.d\
+Mac : ~/.vagrant.d/
+Linux :  ~/.vagrant.d/plugins  /opt/vagrant/plugins  /usr/share/vagrant/plugins
+                         
+
+
+
+
+How to create a Virtual Machine with defined Configurations : 
+                         
+                         
+                         
+How to create a Virtual Machine with defined Configurations
+How to add configurations for the VM in vagrantfile
+How to configure OS, Hardware, Software for VM
+How to validate that vagrantfile is valid
+How to create and setup the VM
+
+Create a Virtual machine with the following configuration
+Linux Centos 7 Operating System
+1GB of Physical Memory
+2 CPU
+Apache web server installed
+Port forwarding Guest 80 -＞ Host 8080
+Shared directory between host and guest (vm)
+Let us create a Vagrantfile defining all of these requirement inside
+
+Step 1 - Create a new folder and create a vagrantfile vagrant init
+Step 2 - Open the vagrantfile in a text editor and add configurations
+
+Vagrantfile uses ruby syntax
+
+loads the Vagrant API version 2 and assigns it to a variable named config
+
+Box Config: Use “config.vm.box” to define the base box for your VM
+
+Provider Config: define the provider (virtualbox)
+
+Hardware Config: Memory, CPU, etc for the VM
+
+Network Config: Define the network for your VM and port forwarding details
+
+Synced Folder Config: Creating a Shared Directory between host and guest VM
+
+Provisioning Config: Install/Update Software, Run setup scripts etc.
+
+Step 3 - Validate Vagrantfile - vagrant validate Can use Ruby Formatter
+Step 4 - Use vagrantfile to create and setup VM - vagrant up | Check Apache server is installed and running
+vagrant halt | vagrant destroy
+
+Sample Vagrantfile:
+Vagrant.configure("2") do |config|
+  config.vm.box = "centos/7"
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "512"
+    vb.cpus = 4
+  end
+  config.vm.synced_folder ".", "/vagrant"
+  config.vm.provision :shell, path: "provision1.sh"
+  config.vm.network "forwarded_port", guest: 80, host: 8080, auto_correct: true
+  config.vm.usable_port_range = (8000..9000)
+end
+
+Sample Provision Script:
+#!/usr/bin/env bash
+
+Install Apache web server
+sudo yum update -y
+sudo yum install -y httpd
+
+Start Apache and set it to run at boot
+sudo systemctl start httpd
+sudo systemctl enable httpd
+
+Create a sample index.html file
+sudo echo "＜html＞＜body＞＜h1＞Hello, world!＜/h1＞＜/body＞＜/html＞" ＞＞/var/www/html/index.html
+
+Restart Apache to serve the new index.html file
+sudo systemctl restart httpd
+
+Configuration Options in Vagrant
+config.vm: modify the configuration of the machine that Vagrant manages
+config.ssh: configure how Vagrant will access your machine over SSH
+config.winrm: configure WinRM (Windows Remote Management) settings for the VM
+config.winssh: configure SSH on windows
+config.vagrant: modify the behavior of Vagrant itself
+
+
                          
