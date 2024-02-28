@@ -1,0 +1,8 @@
+1- Authentication required due to network
+
+solution :
+  1- in startup : ctrl + alt +f4
+  2- sudo iwconfig
+  3- sudo iwlist wlp3s0 scan | grep ESSID
+  4- sudo nmcli d wifi connect BEE_22FF password 125485
+  5- reboot
