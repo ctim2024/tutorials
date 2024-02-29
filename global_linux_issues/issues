@@ -6,3 +6,9 @@ solution :
   3- sudo iwlist wlp3s0 scan | grep ESSID
   4- sudo nmcli d wifi connect BEE_22FF password 125485
   5- reboot
+  
+  
+  
+2- password vagrant ubuntu :
+   1- vagrant ssh master
+   2- sudo passwd vagrant  (change password for user vagrant)  
