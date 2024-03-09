@@ -1,0 +1,24 @@
+What is ansible lint
+How to install and use ansible lint
+How to check errors suggested by ansible-lint
+
+How to check Ansible Playbooks using ansible lint:
+
+Step 1 - Check ansible is installed  ansible --version
+
+Step 2 - Install ansible lint 
+  sudo yum install ansible-lint RedHat centos based Linux environment
+sudo apt install ansible-lint  Ubuntu/Debian based Linux environment
+pip2 install ansible-lint  For others (windows, mac OS)
+
+Step 3 - Verify ansible lint is installed  ansible-lint --version
+
+Step 4 - Can check subcommands with ansible-lint --help
+
+Step 4 - To run ansible-lint on your Playbooks, On terminal cd to the directory of playbook
+
+Step 5 - Run command ansible-lint playbook.yml -v
+It will check the configurations, syntax, roles etc to ensure playbook will run without any issues
+
+Step 6 - If you see any errors or suggestions can goto ansible-lint rule list and check ansible-lint -L
+https://ansible-lint.readthedocs.io/r...
