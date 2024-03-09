@@ -1,0 +1,72 @@
+What are Playbooks:
+Ansible Playbooks are the building blocks of Ansible automation
+
+They are YAML files that define the tasks and configurations that Ansible will apply to managed host machines
+
+Playbooks are configuration files that provide a way to execute complex tasks with multiple steps and conditions
+
+YAML stands for "YAML Ain't Markup Language" and is a human-readable language to represent data
+
+Let’s see and understand some sample Playbooks
+
+---
+- name: Basic playbook
+  hosts: localhost
+  tasks:
+    - name: Print a message
+      debug:
+        msg: "Hello, World!"
+
+This playbook has three sections:
+name, hosts and tasks
+
+--- This is a YAML delimiter that indicates the start of the YAML document
+
+The name section is a descriptive name for the playbook (optional)
+The hosts section specifies the target hosts where the playbook will run
+The tasks section contains the actual tasks to be executed
+
+
+---
+- name: Install Apache web server
+  hosts: webservers
+  become: yes
+  tasks:
+    - name: Install Apache
+      yum:
+        name: httpd
+        state: present
+
+
+    - name: Start Apache
+      service:
+        name: httpd
+        state: started
+        enabled: true
+
+
+- name: Install and start Apache: This is the name of the playbook (optional)
+hosts: webservers: hosts that the playbook will run on, e.g. host group named "webservers"
+become: yes: This tells Ansible to use sudo to execute the tasks
+tasks:: This is the section where the tasks to be performed are defined
+- name: Install Apache: This is the name of the task (optional)
+yum:: This is the module used to install packages on the target host.
+name: httpd: This specifies the name of the package to be installed
+state: present: This specifies that the package should be installed if it is not already present
+- name: Start Apache: This is another task to start the Apache service.
+service:: This is the module used to manage services on the target host
+name: httpd: This specifies the name of the service to be managed.
+state: started: This specifies that the service should be started
+enabled: true: makes sure that the httpd service is set to start automatically when the system boots up
+—
+
+Quick Tips
+
+On the machine where you have installed Ansible. Goto folder of playbook and run the commands
+
+ansible-playbook -h     shows options that can be used with this command
+ansible-playbook --check playbook.yml  Execute a dry-run of the playbook, without running on hosts
+ansible-playbook --syntax-check playbook.yml Check the syntax of the playbook without actually running it
+ansible-playbook --list-tasks playbook.yml  List all tasks that will be executed by the playbook
+ansible-playbook --list-host playbook.yml  List all hosts that will be targeted by the playbook.
+…
