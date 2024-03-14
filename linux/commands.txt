@@ -165,7 +165,7 @@ Base Folder (where OS is stored)    C:\              /
   -> sudo apt-get install wget2-dev : install wget2
   -> sudo apt-get remove wget2      : remove package wget2  
   -> sudo apt-get install "vmware*"   : to install all packages related to vmware 
-
+  -> dpkg -l apache2                  : check apache2 if it was installed  
 
 # documentation
 
