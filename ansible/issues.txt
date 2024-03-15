@@ -1,0 +1,9 @@
+issue :
+fatal: [10.71.1.51]: FAILED! => {"msg": "Missing sudo password"}
+
+solution : 
+
+cd /etc/sudoers.d
+nano ansible
+add this line in file ansible : ctim ALL=(ALL) NOPASSWD: ALL
+

@@ -45,3 +45,17 @@ docker :
   config jenkins to push in local registry :
   
   * same steps as earlier but we use credentials of local registry login and password
+  
+  
+ansible : 
+     
+	
+     	
+    1- add ansible plugin  
+	2- in tools configure ansible with Ansible as name and /bin/ansible as path
+	3- create pipeline that pull repository that contains inventory and playbook files
+    4- install ansible in host 10.71.1.52
+	5- cd /etc/sudores.d
+	6- nano ansible
+	7- add this line in file ansible : ctim ALL=(ALL) NOPASSWD: ALL         (ctim is the user conected to the host where ansible will install the playbook)
+	
