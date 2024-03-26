@@ -167,6 +167,8 @@ Base Folder (where OS is stored)    C:\              /
   -> sudo apt-get install "vmware*"   : to install all packages related to vmware 
   -> dpkg -l apache2                  : check apache2 if it was installed  
 
+ 
+
 # documentation
 
   -> man ls                         : give me documentation of ls command
@@ -177,6 +179,9 @@ Base Folder (where OS is stored)    C:\              /
   -> apropos ls                     : //      //     //     //     //  //
   -> info ls                        : also give documentation if i want to search specific work i typ / then i put my word
   -> ls --help                      : also gives fast help
+  -> sudo apt-get purge apache2 apache2-utils  : uninstall apache2-utils
+  -> sudo apt-get autoremove         : remove after uninstall
+
 
 
 # processes 
@@ -501,6 +506,16 @@ Base Folder (where OS is stored)    C:\              /
 
 # show active ports
 lsof -i -P -n | grep LISTEN
+
+
+# show the process running in a port exemple 80 :
+
+   -> sudo lsof -i :80
+
+# check if port is in use :
+
+   -> sudo netstat -tuln | grep :80
+   
     	 
 	 
 	 
