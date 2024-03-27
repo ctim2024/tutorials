@@ -12,3 +12,12 @@ solution :
 2- password vagrant ubuntu :
    1- vagrant ssh master
    2- sudo passwd vagrant  (change password for user vagrant)  
+
+
+3- ignore package in apt update to avoid error :
+
+   1- ls /etc/apt/sources.list.d/
+   2- sudo mv /etc/apt/sources.list.d/kubernetes.list /etc/apt/sources.list.d/kubernetes.list.disabled    (rename the file to not be updated)
+ 
+
+    
