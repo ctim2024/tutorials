@@ -1,3 +1,4 @@
+
 #general
 kubectl get all -A                                                         #get all resources in all namespaces
 
